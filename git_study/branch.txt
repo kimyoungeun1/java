@@ -1,0 +1,31 @@
+master - 저장소를 만들때 자동으로 만들어지는 기본 브랜치
+
+1. 브랜치 목록보기 -> git branch
+
+2. 브랜치 생성하기 -> git branch 새 브런치명
+3. 특정 브랜치로 작업위치(Head) 변경 -> git check out 브랜치명
+
+4. 브랜치 병합 -> git merge 브랜치명
+5. 브랜치 삭제 -> git branch -d 브랜치명
+
+6. 브랜치 생성과 동시에 작업위치 이동 -> git checkout -b 새브랜치명 (2 + 3)
+
+
+● 원격저장소 생성 후 로컬저장소와 연동
+
+1. 깃헙 사이트에 로그인후 “원격저장소” 개설 – Create Repo~
+2. master 브랜치를 main 브랜치로 변경 (코드 복붙)   git branch –M main
+3. 원격 저장소와 로컬 저장소 연동 (코드 복붙)  git remote add origin 원격저장소 주소  기존 설정된 저장소 삭제  git remote remove origin
+     현재 연동된 저장소 확인하기
+     git remote -v 
+
+4. 업로드 -> 최초 업로드시 깃헙계정 로그인 해야 함(오타주의)
+   git push –u origin main
+
+5.소스트리 프로그램 설치하기
+
+6.삭제시에는 반드시
+
+C:\Users\계정명\AppData\Local의 Atlassian 폴더를 함께 삭제
+C:\Users\계정명\AppData\Roaming의 Atlassian 폴더를 함께 삭제
+

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--  id: ObjectName  -->
+<bean id="tb1" class="kr.co.dodream.beans.TestBean" autowire="byName">
+<property name="data1" value="1500"/>
+<property name="data2" value="15.00"/>
+<property name="data3" value="반가워요"/>
+</bean>
+</beans>
+

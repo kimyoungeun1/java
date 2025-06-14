@@ -1,0 +1,51 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>kr.co.dodream</groupId>
+  <artifactId>HelloExercise</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <description>인사말프로그램</description>
+  
+  
+  
+  
+  <!-- xml에서 사용 관리할 속성를 정의 -->
+  <properties>
+  	<java-version>1.11</java-version>
+  	
+  	<org.springframework-version>6.1.2</org.springframework-version>
+  	<org.springframework-version>5.3.32</org.springframework-version>
+  	<org.springframework-version>4.3.30.RELEASE</org.springframework-version>
+  	<slf4j-api-version>2.0.11</slf4j-api-version>
+  	<logback-classic-version>1.4.14</logback-classic-version>
+  
+  
+  </properties>
+  
+  
+  <dependencies>
+	  <dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-context</artifactId>
+	    <version>${org.springframework-version}</version>
+	  </dependency>
+  	  <!-- slf4j-api -->
+	<dependency>
+    	<groupId>org.slf4j</groupId>
+    	<artifactId>slf4j-api</artifactId>
+    	<version>${slf4j-api-version}</version>
+	</dependency>
+  	<!-- logback-classic -->
+	<dependency>
+    	<groupId>ch.qos.logback</groupId>
+    	<artifactId>logback-classic</artifactId>
+    	<version>${logback-classic-version}</version>
+    	
+	</dependency>
+  	  	
+  </dependencies>
+
+  
+  
+  
+  
+</project>
