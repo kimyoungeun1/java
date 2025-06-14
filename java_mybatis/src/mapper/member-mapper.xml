@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="member">
+	<!-- 만약 resultType이 기본타입일 경우 지정하지 않아도 마이바티즈 내부에서 알아서 처리한다. -->
+	
+	<!-- resultType을 mVo로 작성할 수 있는 이유는 mybatis-config.xml에서 typeAlias 설정을 했기 때문이다. -->
+	<insert id="save" parameterType="mVo">
+		insert into member (memberid, name, pw, phone, email, regtime) 
+		values (#{memberid}, #{name}, #{pw}, #{phone}, #{email}, #{regtime})
+	</insert>
+	
+	<update id="update" parameterType="mVo">
+		update member set
+			memberid = #{memberid},
+			name = #{name},
+			pw = #{pw},
+			phone = #{phone},
+			email = #{email},
+			regtime = #{regtime}
+		
+		<if test="memberid != null">
+			where memberid = #{memberid}
+		</if>
+	</update>
+	
+
+	<delete id="deleteById">
+		delete from member where memberid = #{memberid};
+	</delete>	
+	
+	<!-- 공통구문에 대한 변수역할 -->
+	<sql id="baseColumns">
+		memberid, name, pw, phone, email, regtime
+	</sql>
+	
+	<select id="getOne" resultType="mVo">
+		select  
+			<include refid="baseColumns" />
+		from member where memberid = #{memberid};
+	</select>
+	
+	<!-- select구문은 resultType을 반드시 작성해야 한다. resultType="_int" 도 가능함 -->
+	<select id="countById" resultType="Integer">
+		select count(#{fieldName}) from member;
+	</select>
+	
+	
+	<select id="findAll" resultType="mVo">
+		select 
+			<include refid="baseColumns" />
+		from member;
+	</select>
+	
+	<!-- 80-1번예제 -->
+	<select id="selectMulty" resultType="mVo">
+		select * from member 
+		where memberid in 
+		
+		<!-- ('duly1','duly3','duly5')  -->
+		<!-- 배열을 받으면 무조건 collection 속성의 값을 array 로 지정해야 한다. -->
+		<foreach collection="array" item="id" open="(" close=")" separator=",">
+			#{id}
+		</foreach>		
+	</select>
+	
+	<!-- 80-2번예제 -->
+	<select id="pagingList_list" resultType="mVo">
+		select 
+			<include refid="baseColumns" />
+		from member order by regtime desc limit 
+		
+		<!-- List을 받으면 무조건 collection 속성의 값을 list 로 지정해야 한다. -->
+		<foreach collection="list" item="num" separator=",">
+			#{num}
+		</foreach>
+	</select>
+	
+	<!-- 80-3번예제 -->
+	<select id="pagingList_mapList" resultType="mVo">
+		select 
+			<include refid="baseColumns" />
+		from member order by regtime desc limit
+		
+		<!-- List를 Map을 통해 받으면 collection 속성의 값을 반드시 맵의 key값으로 지정해야 한다. -->
+		<foreach collection="listLimit" item="num" separator=",">
+			#{num}
+		</foreach>
+	</select>
+	
+	<!-- 90-1번 예제 -->
+	<select id="srchMap" resultType="mVo">
+		select
+			<include refid="baseColumns" />
+		from member  
+		
+		<!-- 
+			#{} 표기법은 값을 나타낼때 사용한다.
+			${} 표기법은 컬럼명이나 테이블명을 나타낼때 사용한다.
+		 -->
+		<where>
+			<if test="field!=null">
+				${field} like concat('%',#{value},'%')
+			</if>
+		</where>
+	</select>
+	
+	
+	<!-- 90-2번 예제 -->
+	<select id="srchVO" parameterType="mVo" resultType="mVo">
+		select
+			<include refid="baseColumns" />
+		from member
+		
+		<where>
+			
+			<choose>
+				<when test="name!=null">
+					name like concat('%',#{name},'%');
+				</when>
+				<when test="phone!=null">
+					phone like concat('%',#{phone},'%');
+				</when>
+				<when test="email!=null">
+					email like concat('%',#{email},'%');
+				</when>
+				<otherwise>
+					<!-- 대소문자를 구분하고 싶으면 컬럼명 앞에 Binary를 추가한다. -->
+					Binary memberid like concat('%',#{memberid},'%');
+				</otherwise>
+			</choose>
+			
+		</where>
+	</select>
+	
+</mapper>
