@@ -1,0 +1,18 @@
+package kr.co.dodream.beans;
+
+import java.util.List;
+
+public class TestBean {
+
+	private List<String> list1;
+
+	public List<String> getList1() {
+		return list1;
+	}
+
+	public void setList1(List<String> list1) {
+		this.list1 = list1;
+	}
+	
+	
+}

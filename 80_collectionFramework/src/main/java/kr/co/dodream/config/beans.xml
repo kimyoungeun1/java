@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--  id: ObjectName  -->
+<bean id="tb1" class="kr.co.dodream.beans.TestBean" lazy-init="default">
+<property name="list1">
+<list>
+<value>현대빈</value>
+<value>홍길동</value>
+<value>이순신</value>
+</list>
+</property>
+</bean>
+<bean id="tb2" class="kr.co.dodream.beans.TestBean2" lazy-init="default">
+<property name="list2">
+<list>
+<value type="int">1200</value>
+<value type="int">2400</value>
+<value type="int">4800</value>
+</list>
+</property>
+</bean>
+<bean id="tb3" class="kr.co.dodream.beans.TestBean3" lazy-init="default">
+<property name="set1">
+<set>
+<value>현대빈</value>
+<value>홍길동</value>
+<value>이순신</value>
+</set>
+</property>
+<property name="set2">
+<set>
+<value type="int">1200</value>
+<value type="int">2400</value>
+<value type="int">4800</value>
+</set>
+</property>
+<property name="set3">
+<set>
+<value type="double">12.00</value>
+<value type="double">24.00</value>
+<value type="double">48.00</value>
+</set>
+</property>
+</bean>
+<bean id="tb4" class="kr.co.dodream.beans.TestBean4" lazy-init="default">
+<property name="map1">
+<map>
+<entry key="a1" value="현대빈"/>
+<entry key="a2" value="2400" value-type="int"/>
+<entry key="a3" value="24.00" value-type="double"/>
+</map>
+</property>
+</bean>
+</beans>
